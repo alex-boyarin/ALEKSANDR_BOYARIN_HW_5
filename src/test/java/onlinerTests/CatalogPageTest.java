@@ -2,14 +2,18 @@ package onlinerTests;
 
 import onliner.enums.CatalogCategory;
 import onliner.pages.CatalogPage;
+import onliner.utils.WebDriverRunner;
+import onlinerTests.provider.CatalogElementProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CatalogPageTest {
     private static final CatalogPage catalogPage = new CatalogPage();
@@ -17,23 +21,22 @@ class CatalogPageTest {
     @BeforeAll
     public static void init() {
         catalogPage.openPage();
-
     }
 
-
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         catalogPage.openCatalogPortal();
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
+        WebDriverRunner.close();
     }
 
-
     @ParameterizedTest
-    @EnumSource(value = CatalogCategory.class)
-    void isElementDisplayedOnPage(CatalogCategory category) {
-        assertTrue(catalogPage.isElementDisplayedOnPage(category));
+    @ArgumentsSource(CatalogElementProvider.class)
+    @DisplayName("Catalog elements on page")
+    public void isElementDisplayedOnPage(List<CatalogCategory> categories) {
+        assertTrue(catalogPage.isElementDisplayedOnPage(categories));
     }
 }

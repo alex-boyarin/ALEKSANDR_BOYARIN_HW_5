@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CatalogPage extends BasePage {
     private final By ELEMENT_CATALOG = By.xpath("//li[@class='catalog-navigation-classifier__item ']");
-    private List<WebElement> elementsCatalog;
+    private List<WebElement> listElements;
 
     public CatalogPage() {
     }
@@ -23,17 +23,27 @@ public class CatalogPage extends BasePage {
 
     public CatalogPage openCatalogPortal() {
         mainMenu.clickOnItem(TopMenuMainPage.CATALOG);
-        elementsCatalog = webDriver.findElements(ELEMENT_CATALOG);
+        listElements = webDriver.findElements(ELEMENT_CATALOG);
         return this;
     }
 
-    public boolean isElementDisplayedOnPage(CatalogCategory category) {
-        for (WebElement element : elementsCatalog) {
-            if (element.isDisplayed() && element.getText().equals(category.getValue())) {
-                return true;
+    public boolean isElementDisplayedOnPage(List<CatalogCategory> categories) {
+        boolean check = false;
+        for (CatalogCategory category : categories) {
+            check = false;
+            for (WebElement element : listElements) {
+                if (element.isDisplayed() && element.getText().equals(category.getValue())) {
+                    check = true;
+                    break;
+                }
+            }
+            if (!check) {
+                System.out.println("Категория \"" + category.getValue() + "\" отсутствует либо название изменено!!!");
+                return false;
             }
         }
-        return false;
+        listElements = null;
+        return check;
     }
 //    public CatalogPage selectCategory(ComputersNetworks computersNetworks){
 //       elementsCatalog=webDriver.findElements();
