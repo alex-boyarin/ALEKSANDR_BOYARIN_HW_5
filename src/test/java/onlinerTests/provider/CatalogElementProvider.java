@@ -10,7 +10,18 @@ import java.util.stream.Stream;
 
 public class CatalogElementProvider implements ArgumentsProvider {
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext){
-        return Stream.of(Arguments.of(List.of(CatalogCategory.values())));
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
+        return Stream.of(
+                Arguments.of(List.of(
+                        "Электроника",
+                        "Компьютеры и сети",
+                        "Бытовая техника",
+                        "Стройка и ремонт",
+                        "Дом и сад",
+                        "Авто и мото",
+                        "Красота и спорт",
+                        "Детям и мамам",
+                        "Работа и офис",
+                        "Еда")));
     }
 }

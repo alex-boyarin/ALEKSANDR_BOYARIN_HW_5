@@ -4,6 +4,7 @@ import onliner.enums.CatalogCategory;
 import onliner.pages.CatalogPage;
 import onliner.utils.WebDriverRunner;
 import onlinerTests.provider.CatalogElementProvider;
+import onlinerTests.provider.ComputersNetworksProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,17 @@ class CatalogPageTest {
     @ParameterizedTest
     @ArgumentsSource(CatalogElementProvider.class)
     @DisplayName("Catalog elements on page")
-    public void isElementDisplayedOnPage(List<CatalogCategory> categories) {
-        assertTrue(catalogPage.isElementDisplayedOnPage(categories));
+    public void testCatalogElementDisplayedOnPage(List<String> expectedElement) {
+        assertTrue(catalogPage.isCatalogElementDisplayedOnPage(expectedElement));
     }
+
+    @ParameterizedTest
+    @ArgumentsSource(ComputersNetworksProvider.class)
+    @DisplayName("Computers_And_Networks elements on page")
+    public void testComputersAndNetworksElementDisplayedOnPage(List<String> expectedElements) {
+        catalogPage.selectCategoryComputersAndNetworks();
+        assertTrue(catalogPage.isComputersAndNetworksElementsDisplayedOnPage(expectedElements));
+    }
+
+
 }
