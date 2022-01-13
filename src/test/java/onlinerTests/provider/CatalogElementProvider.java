@@ -1,6 +1,5 @@
 package onlinerTests.provider;
 
-import onliner.enums.CatalogCategory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
