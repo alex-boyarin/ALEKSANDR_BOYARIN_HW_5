@@ -89,5 +89,10 @@
             <artifactId>cucumber-junit</artifactId>
             <version>7.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>22.0.0</version>
+        </dependency>
     </dependencies>
 </project>
