@@ -11,8 +11,8 @@ public class CatalogPage extends BasePage {
     private final By ELEMENT_CATALOG = By.xpath("//li[@class='catalog-navigation-classifier__item ']");
     private final By COMPUTERS_AND_NETWORKS = By.xpath("//li[@data-id='2']//span[contains(text(),'Компьютеры и\u00a0сети')]");
     private final By ELEMENT_COMPUTERS_NETWORKS = By.xpath("//div[@data-id='2']//div[@class='catalog-navigation-list__aside-item']");
-    private final By COMPONENTS = By.xpath("//div[contains(text(), ' Комплектующие ')]");
-    private final By COMPONENTS_FOR_COMPUTER = By.xpath("//div[contains(text(),' Комплектующие ')]/..//a");
+    private final By COMPONENTS = By.xpath("//div[text()=' Комплектующие ']");
+    private final By COMPONENTS_FOR_COMPUTER = By.xpath("//div[text()=' Комплектующие ']/..//a");
 
     public CatalogPage() {
     }
